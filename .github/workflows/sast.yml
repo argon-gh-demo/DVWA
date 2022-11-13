@@ -21,3 +21,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: semgrep ci --json -o ${{env.GITHUB_SHA}}results.json
+      - name: Archive semgrep results
+        uses: actions/upload-artifact@v3
+        with:
+          name: code-coverage-report
+          path: ${{env.GITHUB_SHA}}results.json
+
