@@ -20,4 +20,4 @@ jobs:
     if: (github.actor != 'dependabot[bot]')
     steps:
       - uses: actions/checkout@v3
-      - run: semgrep ci --json
+      - run: semgrep ci --json -o ${{env.GITHUB_SHA}}results.json
