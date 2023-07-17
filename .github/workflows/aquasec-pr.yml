@@ -1,5 +1,5 @@
 name: Aqua
-on: pull_request, push
+on: pull_request
 jobs:
   aqua:
     name: Aqua scanner
@@ -11,6 +11,7 @@ jobs:
       - name: Run Aqua scanner
         uses: docker://aquasec/aqua-scanner
         with:
+          args: trivy fs --scanners config,vuln,secret . --sast --reachability
         env:
           AQUA_KEY: ${{ secrets.AQUA_KEY }}
           AQUA_SECRET: ${{ secrets.AQUA_SECRET }}
